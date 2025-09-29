@@ -30,6 +30,7 @@ int get_languer_fichier_pour_id()
     if (fichier == NULL)
         return 0;
     fseek(fichier, 0, SEEK_END);
+    fclose(fichier);
     return ftell(fichier) / sizeof(tache);
 }
 
@@ -52,7 +53,7 @@ tache cree_nouveau_tache()
 
     printf("Deadline (YYYY-MM-DD) : ");
     fgets(nouveau_tache.Deadline, sizeof(nouveau_tache.Deadline), stdin);
-    nouveau_tache.Deadline[strcspn(nouveau_tache.Deadline, "\n")] = '\0';
+    nouveau_tache.Deadline[strlen(nouveau_tache.Deadline)-1] = '\0';
 
     printf("Statut : ");
     fgets(nouveau_tache.Statut, sizeof(nouveau_tache.Statut), stdin);
