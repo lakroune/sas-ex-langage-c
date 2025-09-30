@@ -18,23 +18,26 @@ void affich_tableau(int *tab, int nb)
     printf("\n");
 }
 
+int touver_min(int *tab, int nb, int debut)
+{
+    int min = debut;
+    for (int i = debut + 1; i < nb; i++)
+        if (tab[min] > tab[i])
+            min = i;
+    return min;
+}
 void tri_selection(int tab[], int nb)
 {
-    int select;
-    for (int i = 0; i < nb-1; i++)
+
+    for (int i = 0; i < nb - 1; i++)
     {
-        select = i;
-        for (int j = i + 1; j < nb; j++)
-            if (tab[j] < tab[select])
-                select = j;
-        int tmp = tab[i];
-        tab[i] = tab[select];
-        tab[select] = tmp;
-     affich_tableau(tab, nb);
+        int position = i;
+        int  min = touver_min(tab, nb, i);
+        int tmp = tab[position];
+        tab[position] = tab[min];
+        tab[min] = tmp;
     }
 }
- 
-
 
 int main()
 {

@@ -14,14 +14,20 @@
 
 void tri_Bulles(int *tab, int nb)
 {
-    for (int i = 0; i < nb - 1; i++)
-        for (int j = 0; j < nb - 1; j++)
+    int changment = 1, i = 0;
+    while (changment)
+    {
+        changment = 0;
+        for (int j = 0; j < nb - i; j++)
             if (tab[j] > tab[j + 1])
             {
                 int tmp = tab[j];
                 tab[j] = tab[j + 1];
                 tab[j + 1] = tmp;
+                changment = 1;
             }
+        i++;
+    }
 }
 
 void affich_tableau(int *tab, int nb)

@@ -12,31 +12,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int trouver_un_element_debut(int *tab, int nb, int val)
-{
-    for (int i = 0; i <= nb / 2 && i <= val; i++)
-        if (val == tab[i])
-            return i;
-    return -1;
-}
-int trouver_un_element_fin(int *tab, int nb, int val)
-{
-    for (int i = nb - 1; i >= nb / 2 ; i--)
-    {
-        if (val == tab[i])
 
-            return i;
+
+int trouver_position(int *tab, int n, int val)
+{
+    int debut = 0, fin = n - 1, m;
+    while (debut <= fin)
+    {
+        m = (debut + fin) / 2;
+        printf("%d ", m);  // Affiche les indices testés
+
+        if (val == tab[m])
+            return m;
+        else if (val < tab[m])
+            fin = m - 1;
+        else
+            debut = m + 1;
     }
     return -1;
 }
 
-int trouver_un_element(int *tab, int nb, int val)
-{
-    if (val >= tab[nb / 2])
-        return trouver_un_element_fin(tab, nb, val);
-    else
-        return trouver_un_element_debut(tab, nb, val);
-}
 
 void affich_tableau(int *tab, int nb)
 {
@@ -47,7 +42,7 @@ void affich_tableau(int *tab, int nb)
 
 int main()
 {
-    int tab[] = {1, 2, 4, 7, 9};
-    affich_tableau(tab, 5);
-    printf("======> %d \t", trouver_un_element(tab, 5, 7));
+    int tab[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    affich_tableau(tab, 10);
+    printf("======> %d \t", trouver_position(tab, 10, 3));
 }
